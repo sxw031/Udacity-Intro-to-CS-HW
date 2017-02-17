@@ -1,14 +1,6 @@
-
-# For SEOs, the web crawler is a powerful tool, 
-# This is the web-crawler search engine built in the inaugural cs101 class at Udacity, 
-# and augemented into a simple application to run on your local machine.
-# use index data structure to repond a query when someone wants the given web pages that correspond to the given keyword.
-
 def get_page(url):
     """procedure that get requested url from thr internet"""
-    # if url in cache:
-    #     return cache[url]
-    # return ""
+
     try:
         import urllib
         return urllib.urlopen(url).read()
@@ -17,12 +9,14 @@ def get_page(url):
 
 def union(a, b):
     """help function that union two arrays"""
+    
     for e in b:
         if e not in a:
             a.append(e)
 
 def get_next_target(page):
     """help function that return first link and end position of the link"""
+    
     start_link = page.find('<a href=')
     if start_link == -1:
         return None, 0
@@ -33,6 +27,7 @@ def get_next_target(page):
 
 def get_all_links(page):
     """procedure that extract all links from requested page"""
+    
     links = []
     while True:
         url, endpos = get_next_target(page)
@@ -45,6 +40,7 @@ def get_all_links(page):
 
 def crawl_web(seed): 
     """Initial function that starts the web crawling on the particular URL, returns index, graph of inlinks"""
+    
     tocrawl = [seed]
     crawled = []
     graph = {}  # <url>, [list of pages it links to]
@@ -79,12 +75,14 @@ def add_to_index(index, keyword, url):
 
 def add_page_to_index(index, url, content):
     """procedure that splits page into words as keyword and adds them to the index."""
+    
     words = content.split()
     for word in words:
         add_to_index(index, word, url)
 
 def lookup(index, keyword):
     """help function that search the url from the given keyword from the index."""
+    
     if keyword in index:
         return index[keyword]
     else:
@@ -92,11 +90,13 @@ def lookup(index, keyword):
  
 def ordered_search(index, ranks, keyword):
     """function that returns the sorted list of all URLs from the keyword. """
+    
     pages = lookup(index,keyword)
     return quick_sort(pages, ranks)
   
 def quick_sort(pages, ranks):
     """help function that use quick_sort algorithm to order the ranking result from the index. """
+    
     if not pages or len(pages) <= 1:
         return pages
     else:
@@ -119,6 +119,7 @@ def quick_sort(pages, ranks):
 
 def is_reciprocal_link(graph, source, destination, k):
     """function take an input k, which is a non-negative integer, and identify the reciprocal links of length up to and including k."""
+    
     if k == 0:
         if destination == source:
             return True
@@ -138,6 +139,7 @@ def is_reciprocal_link(graph, source, destination, k):
 #                 over all pages p that link to this page
 def compute_ranks(graph,k):
     """function that coputes page ranks."""
+    
     d = 0.8 # damping factor
     numloops = 10
 
@@ -162,7 +164,6 @@ def compute_ranks(graph,k):
 
 
 # Here are some example showing what ordered_search should do:
-
 # Observe that the result list is sorted so the highest-ranking site is at the
 # beginning of the list.
 

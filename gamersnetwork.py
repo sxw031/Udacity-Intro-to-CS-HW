@@ -3,7 +3,6 @@
 # Gaming Social Network       #
 # --------------------------- #
 #
-
 # Background
 # ==========
 # You and your friend have decided to start a company that hosts a gaming
@@ -38,13 +37,12 @@
 # symmetric - if 'Bob' is connected to 'Alice', it does not mean that 'Alice' is
 # connected to 'Bob'.
 #
-# Project Description
-# ====================
 # Your task is to complete the procedures according to the specifications below
 # as well as to implement a Make-Your-Own procedure (MYOP). You are encouraged 
 # to define any additional helper procedures that can assist you in accomplishing 
 # a task. You are encouraged to test your code by using print statements and the 
-# Test Run button. 
+# Test Run button.
+# 
 # ----------------------------------------------------------------------------- 
 
 # Example string input. Use it to test your code.
@@ -299,7 +297,6 @@ def get_secondary_connections(network, user):
                         result.append(element)
         return result
     return None
-
 
 # test
 # network = create_data_structure(example_input)
